@@ -1,0 +1,67 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+  border: 0;
+  transition: color $tr, background $tr, border-color $tr;
+  @include font-size(16,1.6);
+  padding: rem-calc(10 30);
+  border-radius: rem-calc($border-radius);
+  height: rem-calc(50);
+ 
+  &:focus,
+  &:active {
+    outline: 0;
+  }
+
+  &:disabled,
+  &.disabled{
+    pointer-events: none;
+  }
+
+  &.default {
+    color: var(--white);
+    background: var(--primary-color);
+
+    &:hover {
+    }
+  }
+
+  &.outlined {
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+
+    &:hover {
+      color: var(--white);
+      background: var(--primary-color);
+    }
+  }
+
+  &.simple {
+    color: var(--primary-color);
+  }
+
+  .icon {
+    line-height: 0;
+    font-size: 0;
+    margin: 0;
+    padding: 0;
+
+    img, svg {
+      height: rem-calc(16);
+      line-height: 0;
+    }
+
+    &-start {
+      margin-right: rem-calc(16);
+    }
+
+    &-end {
+      margin-left: rem-calc(16);
+    }
+  }
+}

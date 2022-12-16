@@ -1,0 +1,23 @@
+.module.text-editor {
+    a:not(.button) {
+        color: var(--primary-color);
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    p {
+        &+ol,
+        &+ul,
+        &+h1,
+        &+h2,
+        &+h3,
+        &+h4,
+        &+h5,
+        &+h6,
+        &+div {
+            margin-top: var(--p-margin);
+        }
+    } 
+}

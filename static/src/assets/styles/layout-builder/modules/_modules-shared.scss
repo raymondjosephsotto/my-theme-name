@@ -1,0 +1,26 @@
+.module {
+
+    +.module {
+        @include responsive-margin("top", $module-margin);
+    }
+
+    &.stack-order-1 {
+        margin-top: 0;
+    }
+
+    &.align-center {
+        text-align: center;
+    }
+}
+
+.facetwp-facet + .module {
+        @include responsive-margin("top", $module-margin);
+}
+
+.cell+.cell {
+    @include breakpoint(small only) {
+        .module {
+            @include responsive-margin("top", $module-margin);
+        }
+    }
+}
