@@ -66,3 +66,9 @@ add_theme_support('sage');
 */
 
 new Roots\Acorn\Bootloader();
+
+/*
+* Boot SSM Core
+*/
+$core = new SSM\Core();
+$core->setup();

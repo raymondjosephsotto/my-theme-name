@@ -10,7 +10,7 @@ return [
     | Most template systems load templates from disk. Here you may specify
     | an array of paths that should be checked for your views.
     |
-    */
+     */
 
     'paths' => [
         get_theme_file_path('/resources/views'),
@@ -26,9 +26,10 @@ return [
     | stored for your application. Typically, this is within the uploads
     | directory. However, as usual, you are free to change this value.
     |
-    */
+     */
 
-    'compiled' => get_theme_file_path('/storage/framework/views'),
+    // 'compiled' => get_theme_file_path('/storage/framework/views'),
+    'compiled' => (function_exists('is_wpe') && (boolean) is_wpe()) ? '/tmp/sage-cache' : get_theme_file_path('/storage/framework/views'),
 
     /*
     |--------------------------------------------------------------------------
@@ -40,7 +41,7 @@ return [
     | 'data' will only display current data. Giving it any other truthy value
     | will display both.
     |
-    */
+     */
 
     'debug' => false,
 
@@ -54,12 +55,12 @@ return [
     | These paths are prefixed with a namespace to get around the conflicts.
     | A use case might be including views from within a plugin folder.
     |
-    */
+     */
 
     'namespaces' => [
         /*
-         | Given the below example, in your views use something like:
-         |     @include('MyPlugin::some.view.or.partial.here')
+        | Given the below example, in your views use something like:
+        |     @include('MyPlugin::some.view.or.partial.here')
          */
         // 'MyPlugin' => WP_PLUGIN_DIR . '/my-plugin/resources/views',
     ],
@@ -72,9 +73,9 @@ return [
     | The namespaces where view components reside. Components can be referenced
     | with camelCase & dot notation.
     |
-    */
+     */
 
     'directives' => [
-        'asset'  => Roots\Acorn\Assets\AssetDirective::class,
+        'asset' => Roots\Acorn\Assets\AssetDirective::class,
     ],
 ];

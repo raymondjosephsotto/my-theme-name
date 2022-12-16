@@ -13,7 +13,7 @@ return [
     | framework needs to place the application's name in a notification or
     | any other location as required by the application or its packages.
     |
-    */
+     */
 
     'name' => env('APP_NAME', wp_get_theme()->get('Name')),
 
@@ -26,7 +26,7 @@ return [
     | running in. This may determine how you prefer to configure various
     | services your application utilizes. Set this in your ".env" file.
     |
-    */
+     */
 
     'env' => defined('WP_ENV') ? WP_ENV : env('WP_ENV', 'production'),
 
@@ -39,7 +39,7 @@ return [
     | stack traces will be shown on every error that occurs within your
     | application. If disabled, a simple generic error page is shown.
     |
-    */
+     */
 
     'debug' => WP_DEBUG,
 
@@ -52,7 +52,7 @@ return [
     | will be used by the PHP date and date-time functions. We have gone
     | ahead and set this to a sensible default for you out of the box.
     |
-    */
+     */
 
     'timezone' => get_option('timezone_string', 'UTC'),
 
@@ -65,9 +65,10 @@ return [
     | booting. These tasks include creating directories, databases, and files,
     | or doing any other checks to ensure the service is functional.
     |
-    */
+     */
 
-    'preflight' => env('WP_ENV', 'production') !== 'production',
+    // 'preflight' => env('WP_ENV', 'production') !== 'production',
+    'preflight' => true,
 
     /*
     |--------------------------------------------------------------------------
@@ -78,7 +79,7 @@ return [
     | to specify a namespace. This defaults to false as to not pollute the
     | global namespace.
     |
-    */
+     */
 
     'globals' => false,
 
@@ -91,7 +92,7 @@ return [
     | by the translation service provider. You are free to set this value
     | to any of the locales which will be supported by the application.
     |
-    */
+     */
 
     'locale' => get_locale(),
 
@@ -104,7 +105,7 @@ return [
     | is not available. You may change the value to correspond to any of
     | the language folders that are provided through your application.
     |
-    */
+     */
 
     'fallback_locale' => 'en',
 
@@ -117,7 +118,7 @@ return [
     | request to your application. Feel free to add your own services to
     | this array to grant expanded functionality to your applications.
     |
-    */
+     */
 
     'providers' => [
         /**
@@ -140,7 +141,7 @@ return [
     | is started. However, feel free to register as many as you wish as
     | the aliases are "lazy" loaded so they don't hinder performance.
     |
-    */
+     */
 
     'aliases' => [
         'App' => Illuminate\Support\Facades\App::class,
@@ -180,4 +181,13 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
     ],
+
+    /*
+    |--------------------------------------------------------------------------
+    | Add CLI Providers
+    |--------------------------------------------------------------------------
+    |
+     */
+
+    SSM\Console\SetupServiceProvider::class,
 ];

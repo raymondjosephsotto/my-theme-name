@@ -1,7 +1,7 @@
-const mix = require('laravel-mix');
-require('@tinypixelco/laravel-mix-wp-blocks');
-require('laravel-mix-purgecss');
-require('laravel-mix-copy-watched');
+const mix = require("laravel-mix");
+require("@tinypixelco/laravel-mix-wp-blocks");
+require("laravel-mix-purgecss");
+require("laravel-mix-copy-watched");
 
 /*
  |--------------------------------------------------------------------------
@@ -14,31 +14,41 @@ require('laravel-mix-copy-watched');
  |
  */
 
-mix.setPublicPath('./dist')
-   .browserSync('sage.test');
+sageFolder = path.resolve(__dirname, "./node_modules");
+staticFolder = path.resolve(__dirname, "./static/node_modules");
 
-mix.sass('resources/assets/styles/app.scss', 'styles')
-   .sass('resources/assets/styles/editor.scss', 'styles')
-   .purgeCss({
-     whitelist: require('purgecss-with-wordpress').whitelist,
-     whitelistPatterns: require('purgecss-with-wordpress').whitelistPatterns,
-   });
+mix.webpackConfig({
+  resolve: {
+    modules: [sageFolder, staticFolder],
+    extensions: [".js, .scss, .css"],
+  },
+});
 
-mix.js('resources/assets/scripts/app.js', 'scripts')
-   .js('resources/assets/scripts/customizer.js', 'scripts')
-   .blocks('resources/assets/scripts/editor.js', 'scripts')
-   .extract();
+mix.setPublicPath("./dist").browserSync("sage.test");
 
-mix.copyWatched('resources/assets/images/**', 'dist/images')
-   .copyWatched('resources/assets/fonts/**', 'dist/fonts');
+mix.sass("resources/assets/styles/app.scss", "styles");
+// .sass('resources/assets/styles/editor.scss', 'styles')
+// .purgeCss({
+//   whitelist: require('purgecss-with-wordpress').whitelist,
+//   whitelistPatterns: require('purgecss-with-wordpress').whitelistPatterns,
+// });
+
+mix
+  .js("resources/assets/scripts/app.js", "scripts")
+  .js("resources/assets/scripts/customizer.js", "scripts")
+  .blocks("resources/assets/scripts/editor.js", "scripts")
+  .extract();
+
+mix
+  .copyWatched("resources/assets/images/**", "dist/images")
+  .copyWatched("resources/assets/fonts/**", "dist/fonts");
 
 mix.autoload({
-  jquery: ['$', 'window.jQuery'],
+  jquery: ["$", "window.jQuery"],
 });
 
 mix.options({
   processCssUrls: false,
 });
 
-mix.sourceMaps(false, 'source-map')
-   .version();
+mix.sourceMaps(false, "source-map").version();
